@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <style>
+    .form {
+      padding: 20px;
+      display: flex;
+      max-width: 350px;
+      flex-direction: column;
+      background-color: #0000003c;
+      height: 450px;
+      border-radius: 5px;
+      justify-content: flex-end;
+      gap: 15px;
+
+    }
+
+
+    .main-contianer {
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding-top: 130px;
+      gap: 25px;
+
+    }
+
+    body {
+      background-color: #333;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .image-container {
+      width: 250px;
+      height: 350px;
+
+    }
+
+    .image {
+      width: 350px;
+      height: 400px;
+    }
+
+    .btn {
+      background-color: rgb(13, 137, 226);
+      color: #ffffff;
+    }
+    input[type=file]{
+      position: relative;
+      top: 20px;
+      height: 115px;
+    }
+
+  </style>
+  <link rel="stylesheet" href="/static/style.css">
+
+  <title>yolov8 object detection</title>
+</head>
+
+<body>
+  <div class="main-contianer">
+
+    <form class="form" method="post" enctype=multipart/form-data>
+      <h2>Upload any image</h1>
+      <input type="file" name="file" class="file" id="inputfile">
+      <br />
+      <button class="btn " type="submit">Upload</button>
+
+      {% if probs == 'Book' %}
+      <p>User is Studying</p>
+      {% elif probs == 'Instagram' %}
+      <p>User is using Instagram</p>
+      {% else %}
+      <p>Not Detected</p>
+      {% endif %}
+
+    </form>
+    <div class="image-container">
+
+
+      <img src="{{ image }}" alt="image" class="image">
+
+
+    </div>
+  </div>
+
+
+  <script>
+    document.getElementById("imageLink").addEventListener("click", function (event) {
+      event.preventDefault();
+      window.open(this.getAttribute("href"), "_blank");
+    });
+  </script>
+
+
+  <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="//stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $('#inputfile').bind('change', function () {
+      let fileSize = this.files[0].size / 1024 / 1024; // this gives in MB
+      if (fileSize > 2) {
+        $("#inputfile").val(null);
+        alert('file is too big. images more than 1MB are not allowed')
+        return
+      }
+
+      let ext = $('#inputfile').val().split('.').pop().toLowerCase();
+      if ($.inArray(ext, ['jpg', 'jpeg']) == -1) {
+        $("#inputfile").val(null);
+        alert('only jpeg/jpg files are allowed!');
+      }
+    });
+  </script>
+</body>
+
+</html>

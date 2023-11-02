@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background-color: #333; /* Dark background color */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center; /* Center-align content */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #222; /* Dark background color for the header */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        h1 {
+            color: blue;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: inline;
+            margin-right: 20px;
+        }
+    
+        section {
+            text-align: left; /* Left-align section content */
+            padding: 20px;
+
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            
+
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-container">
+
+        <h2>Activity Detector</h2>
+        
+        <ul>
+            <li><a href="/" >Home</a></li>
+            <li><a href="https://github.com/Codster01" target="_blank" >About Me</a></li>
+        </ul>
+    </div>
+
+
+    <section class="contact-form">
+        <h2>Contact Me</h2>
+        <form action="{{ url_for('contactme') }}" method="post">
+            <input type="text" placeholder="Name" name="name">
+            <input type="email" placeholder="Email" name="email">
+            <textarea placeholder="Message" name="textarea"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+   
+</body>
+</html>
